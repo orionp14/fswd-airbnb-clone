@@ -15,7 +15,7 @@ gem 'webpacker', '~> 5.0'
 # gem 'uglifier', '~> 4.2.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
-
+gem 'kaminari'
 # Use jquery as the JavaScript library
 # gem 'jquery-rails', '~> 4.4'
 # Use CoffeeScript for .coffee assets and views
@@ -38,12 +38,13 @@ gem 'webrick', '~> 1.7'
 # Mail gem
 gem 'mail', '>= 2.8.0.rc1'
 
+gem 'stripe'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
-
+gem "image_processing", ">= 1.2"
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
+#gem 'aws-sdk-s3', '~> 1.126'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.13', require: false
 

@@ -1,0 +1,45 @@
+.property-image {
+    height: 250px;
+    background-size: cover;
+    background-position: center;
+    @media (min-width: 768px) {
+      height: 400px;
+    }
+  }
+
+.submit-button {
+  float: right;
+}
+
+.book-button {
+  display: inline-flex;
+  float: right;
+}
+
+.calendar-widget {
+  display: inline-flex;
+}
+
+
+.add-property-widget {
+  padding-top: 20px;
+}
+
+.add-property-image {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.add-property-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  padding-bottom: 23px;
+}
+
+.add-prop-foot {
+  padding-top: 10px;
+}
+
