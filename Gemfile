@@ -41,10 +41,10 @@ gem 'mail', '>= 2.8.0.rc1'
 gem 'stripe'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
-gem "image_processing", ">= 1.2"
+gem 'image_processing', '>= 1.2'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-#gem 'aws-sdk-s3', '~> 1.126'
+# gem 'aws-sdk-s3', '~> 1.126'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.13', require: false
 

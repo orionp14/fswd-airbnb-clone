@@ -18,9 +18,9 @@ class StaticPagesController < ApplicationController
 
   def success
     @booking = Booking.find_by(id: params[:id])
-    unless @booking&.charge&.complete
-      flash[:error] = "Booking not found or not completed yet."
-      redirect_to root_path
-    end
+    return if @booking&.charge&.complete
+
+    flash[:error] = 'Booking not found or not completed yet.'
+    redirect_to root_path
   end
 end

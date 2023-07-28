@@ -2,7 +2,7 @@
 import React from 'react';
 import Layout from '@src/layout';
 import BookingWidget from './bookingWidget';
-import { handleErrors } from '@utils/fetchHelper';
+import { handleErrors, safeCredentialsFormData } from '@utils/fetchHelper';
 
 import './property.scss';
 
@@ -62,13 +62,16 @@ handleSubmit = (event) => {
   event.preventDefault();
   const { formData } = this.state;
 
+  console.log(formData)
+
   // Add the provided code here
   let formdata = new FormData();
-  const fileInputElement = document.querySelector('#image-input'); // Replace 'image-input' with the actual ID of your file input element for images
 
-  for (let i = 0; i < fileInputElement.files.length; i++) {
-    formdata.append('property[images][]', fileInputElement.files[i]);
-  }
+  // const fileInputElement = document.getElementById('image-input');
+
+  // for (let i = 0; i < fileInputElement.files.length; i++) {
+  //   formdata.append('property[images][]', fileInputElement.files[i]);
+  // }
 
   formdata.set('property[title]', formData.title);
   formdata.set('property[description]', formData.description);
@@ -80,13 +83,13 @@ handleSubmit = (event) => {
   formdata.set('property[bedrooms]', formData.bedrooms);
   formdata.set('property[beds]', formData.beds);
   formdata.set('property[baths]', formData.baths);
-  formdata.set('property[image_url]', formData.image_url);
 
-  fetch('/api/properties', {
+  console.log(formdata)
+
+  fetch('/api/properties', safeCredentialsFormData({
     method: 'POST',
     body: formdata,
-    ...safeCredentialsForm()
-  })
+  }))
     .then(handleErrors)
     .then(() => {
       // Clear the form fields
@@ -102,7 +105,6 @@ handleSubmit = (event) => {
           bedrooms: 0,
           beds: 0,
           baths: 0,
-          image_url: '',
         },
       });
 
