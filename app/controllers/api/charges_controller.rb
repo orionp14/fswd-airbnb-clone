@@ -30,13 +30,13 @@ module Api
         cancel_url: "#{ENV['URL']}#{params[:cancel_url]}"
       )
 
-      @charge = booking.charges.new({
+      @charge = booking.charges.new(
         checkout_session_id: session.id,
         currency: 'usd',
         amount: amount
-      })
+      )
 
-      if @charge.save
+      if @charge.save!
         render 'api/charges/create', status: :created
       else
         render json: { error: 'charge could not be created' }, status: :bad_request
