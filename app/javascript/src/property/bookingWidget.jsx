@@ -76,11 +76,13 @@ class BookingWidget extends React.Component {
     return fetch(`/api/charges?booking_id=${booking_id}&cancel_url=${window.location.pathname}`, safeCredentials({
       method: 'POST',
     }))
-      .then(handleErrors)
-      .then(response => {
-        const stripe = Stripe(process.env.STRIPE_PUBLISHABLE_KEY);
+    .then(handleErrors)
+    .then(response => {
+      console.log('process.env.STRIPE_PUBLISHABLE_KEY', process.env.STRIPE_PUBLISHABLE_KEY)
 
-        stripe.redirectToCheckout({
+      const stripe = Stripe(process.env.STRIPE_PUBLISHABLE_KEY);
+
+      stripe.redirectToCheckout({
           // Make the id field from the Checkout Session creation API response
           // available to this file, so you can provide it as parameter here
           // instead of the {{CHECKOUT_SESSION_ID}} placeholder.

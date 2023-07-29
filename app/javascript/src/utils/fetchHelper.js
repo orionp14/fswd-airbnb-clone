@@ -4,11 +4,11 @@
  * For use with window.fetch
  */
 export function jsonHeader(options = {}) {
-    return Object.assign(options, {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    });
-  }
+  return Object.assign(options, {
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+  });
+}
   
   // Additional helper methods
   
@@ -32,25 +32,36 @@ export function jsonHeader(options = {}) {
   * Lets fetch include credentials in the request. This includes cookies and other possibly sensitive data.
   * Note: Never use for requests across (untrusted) domains.
   */
-  export function safeCredentials(options = {}) {
+  export function safeCredentialsFormData(options = {}) {
+    const authToken = getAuthenticityToken(); // Get the user's authentication token
     return Object.assign(options, {
       credentials: 'include',
       mode: 'same-origin',
-      headers: Object.assign((options.headers || {}), authenticityHeader(), jsonHeader()),
+      headers: Object.assign(
+        {
+          // Include the authentication token in the headers
+          'X-CSRF-Token': authToken,
+          'X-Requested-With': 'XMLHttpRequest',
+        },
+        options.headers || {},
+        authenticityHeader()
+      ),
     });
   }
   
-  export function handleErrors(response) {
-    if (!response.ok) {
-      throw Error(response.statusText);
-    }
-    return response.json();
-  }
-
-  export function safeCredentialsForm(options = {}) {
+  // Use this function instead if you are using formData as body when uploading images
+  export function safeCredentialsFormData(options = {}) {
     return Object.assign(options, {
       credentials: 'include',
       mode: 'same-origin',
       headers: Object.assign((options.headers || {}), authenticityHeader()),
     });
+  }
+  
+  export function handleErrors(response) {
+    if (!response.ok) {
+      console.error('Error response:', response);
+      throw Error('Network response was not ok');
+    }
+    return response.json();
   }

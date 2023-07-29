@@ -28,20 +28,22 @@ module Api
         mode: 'payment',
         success_url: "#{ENV['URL']}/booking/#{booking.id}/success",
         cancel_url: "#{ENV['URL']}#{params[:cancel_url]}"
-      )
-
-      @charge = booking.charges.new({
-        checkout_session_id: session.id,
-        currency: 'usd',
-        amount: amount
-      })
-
-      if @charge.save
-        render 'api/charges/create', status: :created
-      else
-        render json: { error: 'charge could not be created' }, status: :bad_request
+        )
+  
+        @charge = booking.charges.new(
+          checkout_session_id: session.id,
+          currency: 'usd',
+          amount: amount
+        )
+  
+        if @charge.save!
+          render 'api/charges/create', status: :created
+        else
+          render json: { error: 'charge could not be created' }, status: :bad_request
+        end
       end
     end
+  end
 
     def mark_complete
       # You can find your endpoint's secret in your webhook settings

@@ -3,16 +3,12 @@ module Api
     def create
       @user = User.find_by(email: params[:user][:email])
 
-      if @user and BCrypt::Password.new(@user.password) == params[:user][:password]
+      if @user && BCrypt::Password.new(@user.password) == params[:user][:password]
         session = @user.sessions.create
-        cookies.permanent.signed[:airbnb_session_token] = {
-          value: session.token,
-          httponly: true
-        }
-
-        render 'api/sessions/create', status: :created
+        cookies.permanent.signed[:airbnb_session_token] = session.token
+        render json: { authenticated: true }, status: :created
       else
-        render json: { success: false }, status: :bad_request
+        render json: { authenticated: false }, status: :unauthorized
       end
     end
 
@@ -24,7 +20,7 @@ module Api
         @user = session.user
         render 'api/sessions/authenticated', status: :ok
       else
-        render json: { authenticated: false }, status: :bad_request
+        render json: { authenticated: false }, status: :unauthorized
       end
     end
 
@@ -32,9 +28,9 @@ module Api
       token = cookies.signed[:airbnb_session_token]
       session = Session.find_by(token: token)
 
-      if session and session.destroy
-        render json: { success: true }, status: :ok
-      end
+      return unless session&.destroy
+
+      render json: { success: true }, status: :ok
     end
   end
 end
