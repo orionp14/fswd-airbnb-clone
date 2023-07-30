@@ -11,7 +11,7 @@ class Property extends React.Component {
   state = {
     property: {},
     loading: true,
-      formData: { // Add this line to initialize formData
+      formData: { 
         title: '',
         description: '',
         city: '',

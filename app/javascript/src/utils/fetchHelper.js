@@ -32,22 +32,6 @@ export function jsonHeader(options = {}) {
   * Lets fetch include credentials in the request. This includes cookies and other possibly sensitive data.
   * Note: Never use for requests across (untrusted) domains.
   */
-  export function safeCredentialsFormData(options = {}) {
-    const authToken = getAuthenticityToken(); // Get the user's authentication token
-    return Object.assign(options, {
-      credentials: 'include',
-      mode: 'same-origin',
-      headers: Object.assign(
-        {
-          // Include the authentication token in the headers
-          'X-CSRF-Token': authToken,
-          'X-Requested-With': 'XMLHttpRequest',
-        },
-        options.headers || {},
-        authenticityHeader()
-      ),
-    });
-  }
   
   // Use this function instead if you are using formData as body when uploading images
   export function safeCredentialsFormData(options = {}) {
