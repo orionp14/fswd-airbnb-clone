@@ -15,14 +15,12 @@ class Property extends React.Component {
         title: '',
         description: '',
         city: '',
-        country: '',
         property_type: '',
         price_per_night: 0,
         max_guests: 0,
         bedrooms: 0,
         beds: 0,
         baths: 0,
-        image_url: '',
       },
     };
   
@@ -68,15 +66,20 @@ handleSubmit = (event) => {
   formdata.set('property[title]', formData.title);
   formdata.set('property[description]', formData.description);
   formdata.set('property[city]', formData.city);
-  formdata.set('property[country]', formData.country);
   formdata.set('property[property_type]', formData.property_type);
   formdata.set('property[price_per_night]', formData.price_per_night);
   formdata.set('property[max_guests]', formData.max_guests);
   formdata.set('property[bedrooms]', formData.bedrooms);
   formdata.set('property[beds]', formData.beds);
   formdata.set('property[baths]', formData.baths);
-  formdata.set('property[image_url]', formData.image_url);
 
+  const imageInput = document.getElementById('image-input');
+  if (imageInput.files.length > 0) {
+    for (let i = 0; i < imageInput.files.length; i++) {
+      formdata.append('property[images][]', imageInput.files[i]);
+    }
+  }
+  
   console.log(formdata)
 
   fetch('/api/properties', safeCredentialsFormData({
