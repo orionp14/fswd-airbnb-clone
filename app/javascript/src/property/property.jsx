@@ -15,12 +15,14 @@ class Property extends React.Component {
         title: '',
         description: '',
         city: '',
+        country: '',
         property_type: '',
         price_per_night: 0,
         max_guests: 0,
         bedrooms: 0,
         beds: 0,
         baths: 0,
+        images: [],
       },
     };
   
@@ -66,19 +68,14 @@ handleSubmit = (event) => {
   formdata.set('property[title]', formData.title);
   formdata.set('property[description]', formData.description);
   formdata.set('property[city]', formData.city);
+  formdata.set('property[country]', formData.country);
   formdata.set('property[property_type]', formData.property_type);
   formdata.set('property[price_per_night]', formData.price_per_night);
   formdata.set('property[max_guests]', formData.max_guests);
   formdata.set('property[bedrooms]', formData.bedrooms);
   formdata.set('property[beds]', formData.beds);
   formdata.set('property[baths]', formData.baths);
-
-  const imageInput = document.getElementById('image-input');
-  if (imageInput.files.length > 0) {
-    for (let i = 0; i < imageInput.files.length; i++) {
-      formdata.append('property[images][]', imageInput.files[i]);
-    }
-  }
+  formdata.set('property[images]', formData.images);
   
   console.log(formdata)
 
@@ -101,7 +98,7 @@ handleSubmit = (event) => {
           bedrooms: 0,
           beds: 0,
           baths: 0,
-          image_url: '',
+          images: [],
         },
       });
 
@@ -144,7 +141,7 @@ render() {
             <div className="mb-3">
               <h3 className="mb-0">{title}</h3>
               <p className="text-uppercase mb-0 text-secondary">
-                <small>{city}</small>
+                <small>{city}, {country}</small>
               </p>
               <div>
                 {user ? (
@@ -187,7 +184,7 @@ render() {
                 </div>
               </div>
           <div className="col-12 col-lg-5 border p-4 mb-4 add-property">
-            <AddProperty fetchProperty={this.fetchProperty} />
+          <AddProperty property_id={id} fetchProperty={this.fetchProperty} />
             </div>
           </div>
         </div>

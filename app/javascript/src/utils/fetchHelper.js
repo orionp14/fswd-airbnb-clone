@@ -32,6 +32,13 @@ export function jsonHeader(options = {}) {
   * Lets fetch include credentials in the request. This includes cookies and other possibly sensitive data.
   * Note: Never use for requests across (untrusted) domains.
   */
+  export function safeCredentialsForm(options = {}) {
+    return Object.assign(options, {
+      credentials: 'include',
+      mode: 'same-origin',
+      headers: Object.assign((options.headers || {}), authenticityHeader()),
+    });
+  }
   
   // Use this function instead if you are using formData as body when uploading images
   export function safeCredentialsFormData(options = {}) {
@@ -44,8 +51,7 @@ export function jsonHeader(options = {}) {
   
   export function handleErrors(response) {
     if (!response.ok) {
-      console.error('Error response:', response);
-      throw Error('Network response was not ok');
+      throw Error(response.statusText);
     }
     return response.json();
   }
