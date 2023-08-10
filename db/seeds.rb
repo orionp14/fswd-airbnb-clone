@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-users = User.create([
+users = User.create!([
   { username: 'Tommy', email: 'tommy@test.com', password: 'password' },
   { username: 'Bobby', email: 'bobby@test.com', password: 'password' },
   { username: 'Sarah', email: 'sarah@test.com', password: 'password' },
@@ -15,7 +15,7 @@ users = User.create([
   { username: 'Cammy', email: 'cammy@test.com', password: 'password' },
 ])
 
-properties = Property.create([
+properties = Property.create!([
   {
     title: 'Studio Apartment Minutes from Metro',
     description: '10 minute bus ride (1 stop) to NYC Times Square. Bus stop is a 2 mins walk from house and frequency is every few minutes for 24 hours. Super safe and Quiet neighborhood.',
@@ -27,7 +27,7 @@ properties = Property.create([
     bedrooms: 0,
     beds: 1,
     baths: 1,
-    image_url: 'https://cdn.altcademy.com/assets/images/medium/airbnb_clone/1.jpg',
+    # image_url: 'https://cdn.altcademy.com/assets/images/medium/airbnb_clone/1.jpg',
     user: users.first
   },{
     title: 'Bright & Airy in Highland Park',
@@ -40,7 +40,7 @@ properties = Property.create([
     bedrooms: 3,
     beds: 2,
     baths: 1,
-    image_url: 'https://cdn.altcademy.com/assets/images/medium/airbnb_clone/2.jpg',
+    # image_url: 'https://cdn.altcademy.com/assets/images/medium/airbnb_clone/2.jpg',
     user: users.first
   },{
     title: 'Sunny, Modern room in East Village',
@@ -53,7 +53,7 @@ properties = Property.create([
     bedrooms: 1,
     beds: 1,
     baths: 0,
-    image_url: 'https://cdn.altcademy.com/assets/images/medium/airbnb_clone/3.jpg',
+    # image_url: 'https://cdn.altcademy.com/assets/images/medium/airbnb_clone/3.jpg',
     user: users.first
   },{
     title: 'A Beautiful Brownstone Apartment',
@@ -66,7 +66,7 @@ properties = Property.create([
     bedrooms: 0,
     beds: 3,
     baths: 1,
-    image_url: 'https://cdn.altcademy.com/assets/images/medium/airbnb_clone/4.jpg',
+    # image_url: 'https://cdn.altcademy.com/assets/images/medium/airbnb_clone/4.jpg',
     user: users.second
   },{
     title: 'Private! entire studio, own entrance, private bath',
@@ -79,7 +79,7 @@ properties = Property.create([
     bedrooms: 1,
     beds: 1,
     baths: 1,
-    image_url: 'https://cdn.altcademy.com/assets/images/medium/airbnb_clone/5.jpg',
+    # image_url: 'https://cdn.altcademy.com/assets/images/medium/airbnb_clone/5.jpg',
     user: users.second
   },{
     title: 'Penthouse Studio East 50s Terrace',
@@ -92,7 +92,7 @@ properties = Property.create([
     bedrooms: 0,
     beds: 1,
     baths: 1,
-    image_url: 'https://cdn.altcademy.com/assets/images/medium/airbnb_clone/6.jpg',
+    # image_url: 'https://cdn.altcademy.com/assets/images/medium/airbnb_clone/6.jpg',
     user: users.second
   },{
     title: 'The Webster',
@@ -105,7 +105,7 @@ properties = Property.create([
     bedrooms: 2,
     beds: 3,
     baths: 1,
-    image_url: 'https://cdn.altcademy.com/assets/images/medium/airbnb_clone/7.jpg',
+    # image_url: 'https://cdn.altcademy.com/assets/images/medium/airbnb_clone/7.jpg',
     user: users.third
   },{
     title: 'Cute Quirky Garden apt',
@@ -118,7 +118,7 @@ properties = Property.create([
     bedrooms: 1,
     beds: 2,
     baths: 1,
-    image_url: 'https://cdn.altcademy.com/assets/images/medium/airbnb_clone/8.jpg',
+    # image_url: 'https://cdn.altcademy.com/assets/images/medium/airbnb_clone/8.jpg',
     user: users.third
   },{
     title: 'Sun-drenched 1BD',
@@ -131,7 +131,7 @@ properties = Property.create([
     bedrooms: 1,
     beds: 1,
     baths: 1,
-    image_url: 'https://cdn.altcademy.com/assets/images/medium/airbnb_clone/9.jpg',
+    # image_url: 'https://cdn.altcademy.com/assets/images/medium/airbnb_clone/9.jpg',
     user: users.third
   },{
     title: 'Soho 2 Bedroom Private Terrace',
@@ -144,7 +144,7 @@ properties = Property.create([
     bedrooms: 2,
     beds: 2,
     baths: 2,
-    image_url: 'https://cdn.altcademy.com/assets/images/medium/airbnb_clone/10.jpg',
+    # image_url: 'https://cdn.altcademy.com/assets/images/medium/airbnb_clone/10.jpg',
     user: users.fourth
   },{
     title: 'Private Studio Apartment in Harlem',
@@ -157,7 +157,7 @@ properties = Property.create([
     bedrooms: 0,
     beds: 1,
     baths: 1,
-    image_url: 'https://cdn.altcademy.com/assets/images/medium/airbnb_clone/11.jpg',
+    # image_url: 'https://cdn.altcademy.com/assets/images/medium/airbnb_clone/11.jpg',
     user: users.fourth
   },{
     title: 'LARGE SUNNY ROOM',
@@ -170,7 +170,7 @@ properties = Property.create([
     bedrooms: 1,
     beds: 1,
     baths: 1,
-    image_url: 'https://cdn.altcademy.com/assets/images/medium/airbnb_clone/12.jpg',
+    # image_url: 'https://cdn.altcademy.com/assets/images/medium/airbnb_clone/12.jpg',
     user: users.fourth
   },{
     title: 'LARGE SUNNY ROOM',
@@ -183,7 +183,7 @@ properties = Property.create([
     bedrooms: 1,
     beds: 1,
     baths: 1,
-    image_url: 'https://cdn.altcademy.com/assets/images/medium/airbnb_clone/13.jpg',
+    # image_url: 'https://cdn.altcademy.com/assets/images/medium/airbnb_clone/13.jpg',
     user: users.fifth
   },{
     title: 'Cozy Bright Room',
@@ -196,7 +196,7 @@ properties = Property.create([
     bedrooms: 1,
     beds: 1,
     baths: 1,
-    image_url: 'https://cdn.altcademy.com/assets/images/medium/airbnb_clone/14.jpg',
+    # image_url: 'https://cdn.altcademy.com/assets/images/medium/airbnb_clone/14.jpg',
     user: users.fifth
   },{
     title: 'Enjoy great views of the City in our Deluxe Room!',
@@ -209,7 +209,7 @@ properties = Property.create([
     bedrooms: 1,
     beds: 1,
     baths: 1,
-    image_url: 'https://cdn.altcademy.com/assets/images/medium/airbnb_clone/15.jpg',
+    # image_url: 'https://cdn.altcademy.com/assets/images/medium/airbnb_clone/15.jpg',
     user: users.fifth
   },{
     title: 'A Unique studio apartment',
@@ -222,7 +222,7 @@ properties = Property.create([
     bedrooms: 1,
     beds: 3,
     baths: 1,
-    image_url: 'https://cdn.altcademy.com/assets/images/medium/airbnb_clone/16.jpg',
+    # image_url: 'https://cdn.altcademy.com/assets/images/medium/airbnb_clone/16.jpg',
     user: users.last
   },{
     title: 'Brooklyn Chill & Explore',
@@ -235,7 +235,7 @@ properties = Property.create([
     bedrooms: 1,
     beds: 1,
     baths: 1,
-    image_url: 'https://cdn.altcademy.com/assets/images/medium/airbnb_clone/17.jpg',
+    # image_url: 'https://cdn.altcademy.com/assets/images/medium/airbnb_clone/17.jpg',
     user: users.last
   },{
     title: 'Luxe 1-Bedroom Flat Near Manhattan',
@@ -248,7 +248,7 @@ properties = Property.create([
     bedrooms: 1,
     beds: 2,
     baths: 1,
-    image_url: 'https://cdn.altcademy.com/assets/images/medium/airbnb_clone/18.jpg',
+    # image_url: 'https://cdn.altcademy.com/assets/images/medium/airbnb_clone/18.jpg',
     user: users.last
   }
 ])
