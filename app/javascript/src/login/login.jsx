@@ -1,19 +1,15 @@
 // login.jsx
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Layout from '@src/layout';
 import LoginWidget from './loginWidget';
 import SignupWidget from './signupWidget';
 import { safeCredentials, handleErrors } from '@utils/fetchHelper';
-
 import './login.scss';
-
 class Login extends React.Component {
   state = {
     authenticated: false,
     show_login: true,
   }
-
   componentDidMount() {
     fetch('/api/authenticated')
       .then(handleErrors)
@@ -23,13 +19,11 @@ class Login extends React.Component {
         })
       })
   }
-
   toggle = () => {
     this.setState({
       show_login: !this.state.show_login,
     })
   }
-
   render () {
     const { authenticated, show_login } = this.state;
     if (authenticated) {
@@ -47,7 +41,6 @@ class Login extends React.Component {
         </Layout>
       );
     };
-
     return (
       <Layout>
         <div className="container">
@@ -63,5 +56,4 @@ class Login extends React.Component {
     )
   }
 }
-
 export default Login;

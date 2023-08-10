@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-users = User.create([
+users = User.create!([
   { username: 'Tommy', email: 'tommy@test.com', password: 'password' },
   { username: 'Bobby', email: 'bobby@test.com', password: 'password' },
   { username: 'Sarah', email: 'sarah@test.com', password: 'password' },
@@ -15,7 +15,7 @@ users = User.create([
   { username: 'Cammy', email: 'cammy@test.com', password: 'password' },
 ])
 
-properties = Property.create([
+properties = Property.create!([
   {
     title: 'Studio Apartment Minutes from Metro',
     description: '10 minute bus ride (1 stop) to NYC Times Square. Bus stop is a 2 mins walk from house and frequency is every few minutes for 24 hours. Super safe and Quiet neighborhood.',

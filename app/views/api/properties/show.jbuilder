@@ -23,7 +23,6 @@ json.property do
       json.username @property.user.username
     end
   else
-    # Handle the case where the user is not present (optional)
     json.user nil
     json.image nil
   end
