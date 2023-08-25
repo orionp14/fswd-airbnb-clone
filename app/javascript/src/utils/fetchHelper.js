@@ -39,3 +39,12 @@ export function handleErrors(response) {
   }
   return response.json();
 }
+
+// Use this function instead if you are using formData as body when uploading images
+export function safeCredentialsFormData(options = {}) {
+  return Object.assign(options, {
+    credentials: 'include',
+    mode: 'same-origin',
+    headers: Object.assign((options.headers || {}), authenticityHeader()),
+  });
+}
