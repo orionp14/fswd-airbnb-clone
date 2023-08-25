@@ -16,6 +16,10 @@ class StaticPagesController < ApplicationController
     render 'bookings'
   end
 
+  def host
+    render 'host'
+  end
+
   def success
     @booking = Booking.find_by(id: params[:id])
     return if @booking&.charge&.complete

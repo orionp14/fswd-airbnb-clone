@@ -1,5 +1,6 @@
 // layout.js
 import React from 'react';
+import './layout.scss';
 
 const Layout = (props) => {
   return (
@@ -8,12 +9,15 @@ const Layout = (props) => {
         <div className="container-fluid">
           <a className="navbar-brand text-danger" href="/">Airbnb</a>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto d-flex align-items-center"> {/* Add d-flex and align-items-center classes here */}
+            <ul className="navbar-nav me-auto d-flex align-items-center">
               <li className="nav-item">
                 <a className="nav-link" href="/">Home</a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="/bookings">Bookings</a>
+              </li>
+              <li className="nav-item host">
+                <a className="nav-link" href="/host">Airbnb your home</a>
               </li>
             </ul>
           </div>

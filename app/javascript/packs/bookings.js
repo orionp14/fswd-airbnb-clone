@@ -1,1 +1,1 @@
-import '@src/bookings/bookings';
+import '@src/bookings';

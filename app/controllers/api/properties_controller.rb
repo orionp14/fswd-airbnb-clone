@@ -16,11 +16,11 @@ module Api
 
     def create
       @property = current_user.properties.new(property_params)
-
-      if @property.save!
+    
+      if @property.save
         render 'api/properties/show', status: :created
       else
-        render json: { error: 'Unable to create property' }, status: :unprocessable_entity
+        render json: { errors: @property.errors.full_messages }, status: :unprocessable_entity
       end
     end
 

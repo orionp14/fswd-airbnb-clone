@@ -1,15 +1,19 @@
 import React from 'react';
 import UserBookings from './UserBookings';
 import PropertyBookings from './PropertyBookings';
+import Layout from '@src/layout';
+import './bookings.scss'
 
-const App = () => {
+const Bookings = () => {
   return (
-    <div>
-      <h1>Property Booking</h1>
-      <UserBookings />
-      <PropertyBookings propertyId={1} />
-    </div>
+    <Layout>
+      <div>
+        <h1>Property Booking</h1>
+        <UserBookings />
+        <PropertyBookings propertyId={1} />
+      </div>
+    </Layout>
   );
 };
 
-export default App;
+export default Bookings;
