@@ -17,7 +17,7 @@ module Api
     def create
       @property = current_user.properties.new(property_params)
     
-      if @property.save
+      if @property.save!
         render 'api/properties/show', status: :created
       else
         render json: { errors: @property.errors.full_messages }, status: :unprocessable_entity
@@ -27,7 +27,7 @@ module Api
     private
 
     def property_params
-      params.require(:property).permit(:title, :description, :city, :country, :property_type, :price_per_night, :max_guests, :bedrooms, :beds, :baths, images: [])
+      params.require(:property).permit(:title, :description, :city, :country, :property_type, :price_per_night, :max_guests, :bedrooms, :beds, :baths, :image)
     end
   end
 end

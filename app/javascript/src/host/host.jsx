@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Layout from '@src/layout';
-import { safeCredentials, handleErrors } from '@utils/fetchHelper';
+import { safeCredentialsFormData, handleErrors } from '@utils/fetchHelper';
 import './host.scss';
 
 class Host extends Component {
@@ -17,7 +17,6 @@ class Host extends Component {
       bedrooms: '',
       beds: '',
       baths: '',
-      images: [],
     };
   }
 
@@ -26,13 +25,11 @@ class Host extends Component {
     this.setState({ [name]: value });
   }
 
-  handleImageInputChange = (event) => {
-    const { files } = event.target;
-    this.setState({ images: files });
-}
-
-handleSubmit = (event) => {
+  handleSubmit = (event) => {
     event.preventDefault();
+
+    // grab file from id image-input
+    let imagePicker = document.getElementById('image-input');
 
     const formData = new FormData();
     formData.append('property[title]', this.state.title);
@@ -45,19 +42,15 @@ handleSubmit = (event) => {
     formData.append('property[bedrooms]', this.state.bedrooms);
     formData.append('property[beds]', this.state.beds);
     formData.append('property[baths]', this.state.baths);
+    formData.append('property[image]', imagePicker.files[0]);
 
-    for (let i = 0; i < this.state.images.length; i++) {
-        formData.append('property[images][]', this.state.images[i]);
-    }
-
-    fetch('/api/properties', {
-        method: 'POST',
-        ...safeCredentials(), 
-        body: formData,
-    })
+    fetch('/api/properties', safeCredentialsFormData({
+      method: 'POST',
+      body: formData,
+    }))
     .then(handleErrors)
     .then(data => {
-        window.location.href = `/properties/${data.property.id}`;
+      window.location.href = `/property/${data.property.id}`;
     })
     .catch(error => {
         console.error('Error creating property:', error);
@@ -207,12 +200,11 @@ handleSubmit = (event) => {
                   <div className="form-group mb-2">
                     <label htmlFor="image-input">Upload Images</label>
                     <input
-                      type="file"
                       id="image-input"
                       name="image-input"
-                      onChange={this.handleImageInputChange}
-                      className="form-control"
-                      multiple
+                      type="file"
+                      accept="image/*"
+                      required
                     />
                   </div>
                   <button type="submit" className="btn btn-primary mt-2 mb-2 submit-button">Submit</button>
