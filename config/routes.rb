@@ -5,10 +5,12 @@ Rails.application.routes.draw do
     # Add routes below this line
     resources :users, only: [:create]
     resources :sessions, only: [:create, :destroy]
-    resources :properties, only: [:index, :show, :create]
+    resources :properties, only: [:index, :show, :create, :update]
     resources :bookings, only: [:create]
     resources :charges, only: [:create]
 
+    get '/bookings/user-property-bookings' => 'bookings#user_property_bookings'
+    get '/bookings/user' => 'bookings#get_user_bookings'
     get '/properties/:id/bookings' => 'bookings#get_property_bookings'
     get '/authenticated' => 'sessions#authenticated'
     get '/booking/:id/success' => 'bookings#success', as: :booking_success
@@ -20,6 +22,6 @@ Rails.application.routes.draw do
   # Static page routes
   get '/property/:id' => 'static_pages#property'
   get '/login' => 'static_pages#login'
-  get '/bookings' => 'static_pages#bookings'
+  get '/user-bookings' => 'static_pages#bookings'
   get '/host' => 'static_pages#host'
 end

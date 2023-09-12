@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { safeCredentials, handleErrors } from '@utils/fetchHelper';
+import './bookings.scss';
 
-const PropertyBookings = ({ propertyId }) => {
+const PropertyBookings = () => {
   const [propertyBookings, setPropertyBookings] = useState([]);
 
   useEffect(() => {
-    fetchPropertyBookings();
+    fetchUserPropertyBookings();
   }, []);
 
-  const fetchPropertyBookings = () => {
-    fetch(`/api/properties/${propertyId}/bookings`, safeCredentials())
+  const fetchUserPropertyBookings = () => {
+    fetch('/api/bookings/user-property-bookings', safeCredentials())
       .then(handleErrors)
       .then(data => {
         setPropertyBookings(data.bookings);
@@ -21,20 +22,30 @@ const PropertyBookings = ({ propertyId }) => {
 
   return (
     <div>
-      <h2>Bookings for Property ID {propertyId}</h2>
+      <h2>Your Property Bookings</h2>
       {propertyBookings.length === 0 ? (
-        <p>No bookings found for this property.</p>
+        <p>No bookings found for your properties.</p>
       ) : (
-        <ul>
-          {propertyBookings.map((booking) => (
-            <li key={booking.id}>
-              <p>User ID: {booking.user_id}</p>
-              <p>Start Date: {booking.start_date}</p>
-              <p>End Date: {booking.end_date}</p>
-              <p>Paid?: {booking.paid ? 'Yes' : 'No'}</p>
-            </li>
-          ))}
-        </ul>
+        <table className="table table-striped">
+          <thead className="thead-dark">
+            <tr>
+              <th>User ID</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Paid?</th>
+            </tr>
+          </thead>
+          <tbody>
+            {propertyBookings.map((booking) => (
+              <tr key={booking.id}>
+                <td>{booking.user_id}</td>
+                <td>{booking.start_date}</td>
+                <td>{booking.end_date}</td>
+                <td>{booking.paid ? 'Yes' : 'No'}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       )}
     </div>
   );

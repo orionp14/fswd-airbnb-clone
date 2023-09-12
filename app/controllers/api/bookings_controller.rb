@@ -19,9 +19,16 @@ module Api
     def get_property_bookings
       property = Property.find_by(id: params[:id])
       return render json: { error: 'cannot find property' }, status: :not_found unless property
-
+    
       @bookings = property.bookings.where('end_date > ? ', Date.today)
-      render 'api/bookings/index'
+      # Include property details in the response
+      property_data = {
+        id: property.id,
+        title: property.title,
+        price_per_night: property.price_per_night,
+        # Add other property details as needed
+      }
+      render json: { property: property_data, bookings: @bookings }, status: :ok
     end
 
     def get_user_bookings
@@ -30,7 +37,20 @@ module Api
       return render json: { error: 'user not logged in' }, status: :unauthorized unless session
 
       user = session.user
-      @bookings = user.bookings
+      @bookings = user.bookings.includes(:property)
+      render 'api/bookings/index'
+    end
+
+    def user_property_bookings
+      token = cookies.signed[:airbnb_session_token]
+      session = Session.find_by(token: token)
+      return render json: { error: 'user not logged in' }, status: :unauthorized unless session
+    
+      user = session.user
+    
+      # Fetch bookings for properties owned by the user
+      @bookings = Booking.joins(:property).where(properties: { user_id: user.id }).where('end_date > ?', Date.today)
+    
       render 'api/bookings/index'
     end
 

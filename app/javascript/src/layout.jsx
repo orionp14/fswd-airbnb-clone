@@ -14,7 +14,7 @@ const Layout = (props) => {
                 <a className="nav-link" href="/">Home</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/bookings">Bookings</a>
+                <a className="nav-link" href="/user-bookings">Bookings</a>
               </li>
               <li className="nav-item host">
                 <a className="nav-link" href="/host">Airbnb your home</a>

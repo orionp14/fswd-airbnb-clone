@@ -45,3 +45,71 @@
   padding-top: 10px;
 }
 
+.edit-form {
+  padding-top: 10px;
+  border-top: 1px solid lightgrey;
+}
+
+.property-information{ 
+  padding-bottom: 25px;
+}
+
+.date-input {
+  padding: 10px;
+  border: 1px solid #ccc; 
+  border-radius: 4px; 
+  font-size: 16px; 
+  background-color: #fff; 
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); 
+  transition: border-color 0.3s ease-in-out; 
+
+ 
+  &::-webkit-calendar-picker-indicator {
+    color: #333; 
+  }
+
+
+  &:hover,
+  &:focus {
+    border-color: #007bff; 
+  }
+
+
+  &:disabled {
+    background-color: #f7f7f7; 
+    color: #777; 
+    cursor: not-allowed; 
+  }
+}
+
+.start-date-label {
+  padding-right: 50px;
+}
+
+.end-date-label {
+  padding-right: 56px;
+}
+
+.price-heading {
+  padding-bottom: 3px;
+}
+
+.date-input-container {
+  display: flex; /* Use flexbox for layout */
+  justify-content: flex-end; /* Align items to the right */
+  align-items: center; /* Center vertically */
+  margin-top: 10px; /* Add some top margin for spacing */
+}
+
+/* Date input label */
+.date-input-label {
+  flex: 1; /* Expand to take available space */
+  text-align: right; /* Align the label text to the right */
+  padding-right: 10px; /* Add right padding for spacing */
+}
+
+
+
+
+
+

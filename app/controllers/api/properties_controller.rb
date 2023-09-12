@@ -24,6 +24,20 @@ module Api
       end
     end
 
+    def update
+      @property = Property.find_by(id: params[:id])
+      
+      unless @property
+        return render json: { error: 'not_found' }, status: :not_found
+      end
+    
+      if @property.update(property_params)
+        render 'api/properties/show', status: :ok
+      else
+        render json: { errors: @property.errors.full_messages }, status: :unprocessable_entity
+      end
+    end
+
     private
 
     def property_params
