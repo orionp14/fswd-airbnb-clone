@@ -12,6 +12,8 @@ json.property do
   json.baths @property.baths
   json.image_url url_for(@property.image) if @property.image.attached?
 
+  json.is_owner current_user == @property.user
+
   if @property.user
     json.user do
       json.id @property.user.id
