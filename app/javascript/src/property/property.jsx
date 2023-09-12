@@ -117,7 +117,9 @@ class Property extends React.Component {
               </div>
               <hr />
               <p>{property.description}</p>
-              <button className="btn btn-outline-primary"onClick={this.toggleEditForm}>Edit Property</button>
+              { property.is_owner && (
+                <button className="btn btn-outline-primary" onClick={this.toggleEditForm}>Edit Property</button>
+              )}
             </div>
             <div className="col-12 col-lg-5">
               <BookingWidget property_id={property.id} price_per_night={property.price_per_night} />
