@@ -1,7 +1,21 @@
 .property {
-    .property-image {
-      padding-top: calc(2 / 3 * 100%); /* aspect ratio 3:2 */
-      background-size: cover;
-      background-position: center;
-    }
+  .property-image {
+    position: relative;
+    width: 100%; /* Set the desired width */
+    height: 0; /* Maintain aspect ratio */
+    padding-top: calc(2 / 3 * 100%); /* aspect ratio 3:2 */
+    background-size: cover;
+    background-position: center;
   }
+
+  .property-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+}

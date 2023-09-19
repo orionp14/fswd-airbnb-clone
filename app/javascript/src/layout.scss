@@ -6,9 +6,25 @@
 .nav-link:hover {
     position: relative;
     display: inline-block;
-    padding: 8px;
-    border-radius: 5px;
-    background-color: rgba(214, 214, 214, 0.3); /* Red with reduced opacity */
+    padding: 8px 20px;
+    border-radius: 8px;
+    background-color: rgba(226, 226, 226, 0.4);
     border-radius: 20px;
+    color: black;
+  }
+
+  .airbnb-logo {
+    width: 25px;
+    margin-right: 10px;
+    color: #cc2d3d;
+    margin-bottom: 3px;
+  }
+
+  .nav-item{
+    padding-left: 12px;
+  }
+
+  .foot{
+    margin-top: 20px;
   }
   

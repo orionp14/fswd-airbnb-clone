@@ -26,7 +26,7 @@ module Api
 
     def update
       @property = Property.find_by(id: params[:id])
-      
+    
       unless @property
         return render json: { error: 'not_found' }, status: :not_found
       end
@@ -37,6 +37,7 @@ module Api
         render json: { errors: @property.errors.full_messages }, status: :unprocessable_entity
       end
     end
+    
 
     private
 

@@ -58,7 +58,11 @@ class Property extends React.Component {
     formData.append('property[beds]', editedProperty.beds);
     formData.append('property[baths]', editedProperty.baths);
     formData.append('property[price_per_night]', editedProperty.price_per_night);
-    formData.append('property[image]', imagePicker.files[0]);
+    
+    // Check if a new image has been selected before appending it
+    if (imagePicker.files[0]) {
+      formData.append('property[image]', imagePicker.files[0]);
+    }
     
   
     fetch(`/api/properties/${this.props.property_id}`, safeCredentialsFormData ({
@@ -73,8 +77,8 @@ class Property extends React.Component {
             property: { ...prevState.editedProperty },
           }),
           () => {
-            // Log the updated property data
             console.log('Property updated:', this.state.property);
+            window.location.reload();
           }
         );
       })
@@ -97,12 +101,21 @@ class Property extends React.Component {
 
     return (
       <Layout>
-        <div className="property-image mb-3" style={{ backgroundImage: `url(${property.image_url})` }} />
+        <div className="property-image mb-3">
+          <img src={property.image_url} alt="Property Image" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+        </div>
         <div className="container property-information">
           <div className="row">
             <div className="info col-12 col-lg-7">
               <div className="mb-3">
-                <h3 className="mb-0">{property.title}</h3>
+              <div className="edit-mode d-flex justify-content-between align-items-center">
+                  <h3 className="mb-0">{property.title}</h3>
+                  {property.is_owner && (
+                    <button className="btn btn-outline-danger" onClick={this.toggleEditForm}>
+                      Edit Property
+                    </button>
+                  )}
+                </div> 
                 <p className="text-uppercase mb-0 text-secondary"><small>{property.city}, {property.country}</small></p>
                 <p className="mb-0"><small>Hosted by <b>{property.user.username}</b></small></p>
               </div>
@@ -117,9 +130,6 @@ class Property extends React.Component {
               </div>
               <hr />
               <p>{property.description}</p>
-              { property.is_owner && (
-                <button className="btn btn-outline-primary" onClick={this.toggleEditForm}>Edit Property</button>
-              )}
             </div>
             <div className="col-12 col-lg-5">
               <BookingWidget property_id={property.id} price_per_night={property.price_per_night} />
@@ -127,13 +137,13 @@ class Property extends React.Component {
           </div>
         </div>
         {isEditing && (
-          <EditForm
-            property={editedProperty}
-            onInputChange={this.handleInputChange}
-            onSubmit={this.handleFormSubmit}
-            onCancel={this.cancelEdit}
-          />
-        )}
+            <EditForm
+              property={editedProperty}
+              onInputChange={this.handleInputChange}
+              onSubmit={this.handleFormSubmit}
+              onCancel={this.cancelEdit}
+            />
+            )}
       </Layout>
     )
   }
@@ -262,7 +272,7 @@ function EditForm({ property, onInputChange, onSubmit, onCancel }) {
           />
           <small className="form-text text-muted">Choose one or more images to upload.</small>
         </div>
-        <button type="submit" className="btn btn-primary mt-2 mb-2">Save</button>
+        <button type="submit" className="btn btn-danger mt-2 mb-2 save-button">Save</button>
         <button type="button" onClick={onCancel} className="btn btn-secondary mt-2 mb-2">Cancel</button>
       </form>
     </div>

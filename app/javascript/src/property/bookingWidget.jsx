@@ -113,19 +113,22 @@ class BookingWidget extends React.Component {
 
     return (
       <div className="border p-4 mb-4">
-        <form onSubmit={this.submitBooking}>
-          <h5>${price_per_night} <small>per night</small></h5>
-          <hr/>
+        <form onSubmit={this.submitBooking} className="d-flex flex-column">
+          <div className="d-flex justify-content-between align-items-center mb-2">
+            <h5>${price_per_night} <small>per night</small></h5>
+            <button type="submit" className="btn btn-large btn-danger">Book</button>
+          </div>
+          <hr />
           <div style={{ marginBottom: focusedInput ? '400px': '2rem' }}>
             <DateRangePicker
-              startDate={startDate} // momentPropTypes.momentObj or null,
-              startDateId="start_date" // PropTypes.string.isRequired,
-              endDate={endDate} // momentPropTypes.momentObj or null,
-              endDateId="end_date" // PropTypes.string.isRequired,
+              startDate={startDate}
+              startDateId="start_date"
+              endDate={endDate}
+              endDateId="end_date"
               onDatesChange={this.onDatesChange}
-              focusedInput={focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
-              onFocusChange={this.onFocusChange} // PropTypes.func.isRequired,
-              isDayBlocked={this.isDayBlocked} // block already booked dates
+              focusedInput={focusedInput}
+              onFocusChange={this.onFocusChange}
+              isDayBlocked={this.isDayBlocked}
               numberOfMonths={1}
             />
           </div>
@@ -135,10 +138,9 @@ class BookingWidget extends React.Component {
               <p>${(price_per_night * days).toLocaleString()}</p>
             </div>
           )}
-          <button type="submit" className="btn btn-large btn-danger btn-block">Book</button>
         </form>
       </div>
-    )
+    );    
   }
 }
 

@@ -14,18 +14,20 @@ const Bookings = () => {
   return (
     <Layout>
       <div className="container">
-        <h1 className="my-4">Property Booking</h1>
+        <div className="d-flex justify-content-between align-items-center mb-4 pt-3">
+          <h1>Property Bookings</h1>
+          <button
+            className="btn btn-outline-danger"
+            onClick={toggleBookings}
+          >
+            {showUserBookings ? 'Show Property Bookings' : 'Show User Bookings'}
+          </button>
+        </div>
         <div className="card">
           <div className="card-body">
             {showUserBookings ? <UserBookings /> : <PropertyBookings />}
           </div>
         </div>
-        <button
-          className="btn btn-primary mt-3"
-          onClick={toggleBookings}
-        >
-          {showUserBookings ? 'Show Property Bookings' : 'Show User Bookings'}
-        </button>
       </div>
     </Layout>
   );

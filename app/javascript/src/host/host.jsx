@@ -60,7 +60,7 @@ class Host extends Component {
       render() {
         return (
           <Layout>
-            <div className="container">
+            <div className="container pt-3">
               <h2>Add New Property</h2>
               <div className='add-property-widget'>
                 <form onSubmit={this.handleSubmit}>
@@ -204,10 +204,11 @@ class Host extends Component {
                       name="image-input"
                       type="file"
                       accept="image/*"
+                      className='form-control'
                       required
                     />
                   </div>
-                  <button type="submit" className="btn btn-primary mt-2 mb-2 submit-button">Submit</button>
+                  <button type="submit" className="btn btn-outline-danger mt-2 mb-2 submit-button">Submit</button>
                 </form>
               </div>
             </div>

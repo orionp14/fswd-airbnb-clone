@@ -5,6 +5,16 @@
     @media (min-width: 768px) {
       height: 400px;
     }
+     
+    .property-image img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+    }
   }
 
 .submit-button {
@@ -90,24 +100,23 @@
   padding-right: 56px;
 }
 
-.price-heading {
-  padding-bottom: 3px;
-}
-
 .date-input-container {
-  display: flex; /* Use flexbox for layout */
-  justify-content: flex-end; /* Align items to the right */
-  align-items: center; /* Center vertically */
-  margin-top: 10px; /* Add some top margin for spacing */
+  display: flex; 
+  justify-content: flex-end; 
+  align-items: center; 
+  margin-top: 10px; 
 }
 
 /* Date input label */
 .date-input-label {
-  flex: 1; /* Expand to take available space */
-  text-align: right; /* Align the label text to the right */
-  padding-right: 10px; /* Add right padding for spacing */
+  flex: 1; 
+  text-align: right; 
+  padding-right: 10px; 
 }
 
+.save-button{
+  padding-right: 10px;
+}
 
 
 

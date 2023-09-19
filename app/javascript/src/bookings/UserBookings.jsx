@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { safeCredentials, handleErrors } from '@utils/fetchHelper';
-import './bookings.scss'; // Import your custom CSS file
+import './bookings.scss'; 
 
 const UserBookings = () => {
   const [bookings, setBookings] = useState([]);
@@ -44,30 +44,41 @@ const UserBookings = () => {
 
   return (
     <div className="user-bookings">
-      <h2>Your Bookings</h2>
+      <h2>Upcoming Travel Plans</h2>
       {bookings.length === 0 ? (
         <p>No bookings found.</p>
       ) : (
-        <table className="table">
+        <table className="custom-table">
           <thead>
             <tr>
-              <th>Property ID</th>
+              <th>Property</th>
               <th>Start Date</th>
               <th>End Date</th>
+              <th>Price</th>
               <th>Paid?</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
             {bookings.map((booking) => (
-              <tr key={booking.id}>
-                <td>{booking.property_id}</td>
+              <tr key={booking.id} className="booking-container">
+                <td>
+                  <div className="property-info">
+                    <img
+                      src={booking.property.image_url}
+                      alt={booking.property.title}
+                      className="property-image"
+                    />
+                    <span className="property-title">{booking.property.title}</span>
+                  </div>
+                </td>
                 <td>{booking.start_date}</td>
                 <td>{booking.end_date}</td>
+                <td>${booking.property.price_per_night}</td>
                 <td>{booking.is_paid ? 'Yes' : 'No'}</td>
                 <td>
                   {!booking.is_paid && (
-                    <button onClick={() => initiateStripeCheckout(booking.id)} className="btn btn-outline-primary">
+                    <button onClick={() => initiateStripeCheckout(booking.id)} className="checkout-button">
                       Checkout
                     </button>
                   )}

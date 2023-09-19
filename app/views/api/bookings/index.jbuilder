@@ -9,6 +9,7 @@ json.bookings do
       json.title booking.property.title
       json.description booking.property.description
       json.city booking.property.city
+      json.price_per_night booking.property.price_per_night
       json.image_url url_for(booking.property.image) if booking.property.image.attached?
     end
   end
