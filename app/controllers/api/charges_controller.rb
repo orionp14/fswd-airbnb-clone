@@ -28,7 +28,7 @@ module Api
           quantity: 1,
         }],
         mode: "payment",
-        success_url: "#{ENV['URL']}/booking/#{booking.id}/success",
+        success_url: "#{ENV['URL']}/booking/#{booking.id}/success?property_title=#{property.title}&start_date=#{booking.start_date}&end_date=#{booking.end_date}&price=#{amount}&unit_amount=#{(amount)}",
         cancel_url: "#{ENV['URL']}#{params[:cancel_url]}",
       )
 
@@ -39,6 +39,8 @@ module Api
       })
 
       if @charge.save
+        @booking = booking
+        @property = property 
         render 'api/charges/create', status: :created
       else
         render json: { error: 'charge could not be created' }, status: :bad_request

@@ -20,11 +20,10 @@ class StaticPagesController < ApplicationController
     render 'host'
   end
 
-  def success
-    @booking = Booking.find_by(id: params[:id])
-    return if @booking&.charge&.complete
-
-    flash[:error] = 'Booking not found or not completed yet.'
-    redirect_to root_path
+  def booking_success
+    @property_title = params[:property_title]
+    @start_date = params[:start_date]
+    @end_date = params[:end_date]
+    @unit_amount = params[:unit_amount]
   end
 end

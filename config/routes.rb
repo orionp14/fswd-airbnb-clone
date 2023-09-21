@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     get '/bookings/user' => 'bookings#get_user_bookings'
     get '/properties/:id/bookings' => 'bookings#get_property_bookings'
     get '/authenticated' => 'sessions#authenticated'
-    get '/booking/:id/success' => 'bookings#success', as: :booking_success
+    
 
     # stripe webhook
     post '/charges/mark_complete' => 'charges#mark_complete'
@@ -24,4 +24,5 @@ Rails.application.routes.draw do
   get '/login' => 'static_pages#login'
   get '/user-bookings' => 'static_pages#bookings'
   get '/host' => 'static_pages#host'
+  get '/booking/:id/success', to: 'static_pages#booking_success', as: 'booking_success'
 end
